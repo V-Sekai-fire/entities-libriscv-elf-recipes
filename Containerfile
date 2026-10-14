@@ -14,6 +14,7 @@ ARG ABI
 ARG GCC_SHA
 ARG BINUTILS_SHA
 ARG NEWLIB_SHA
+ARG BINUTILS_TAR_SHA256
 ARG SRC=/src
 ARG JOBS=4
 ENV DEBIAN_FRONTEND=noninteractive
@@ -25,9 +26,10 @@ WORKDIR ${SRC}
 RUN fetch() { mkdir -p "$1" && git -C "$1" init -q && git -C "$1" fetch -q --depth 1 "$2" "$3" \
                 && git -C "$1" checkout -q FETCH_HEAD; } \
  && git clone -q --depth 1 --branch "${RGT_TAG}" https://github.com/riscv-collab/riscv-gnu-toolchain.git rgt \
- && for i in 1 2 3 4 5; do git -C rgt submodule update -q --init --depth 1 binutils && break; \
-      echo "binutils fetch failed (sourceware rate limit?), retry $i" >&2; sleep $((i * 60)); done \
- && test "$(git -C rgt/binutils rev-parse HEAD)" = "${BINUTILS_SHA}" \
+ && curl -fsSL --retry 5 -o binutils.tar.gz \
+      "https://github.com/V-Sekai-fire/entities-libriscv-elf-recipes/releases/download/sources/binutils-${BINUTILS_SHA}.tar.gz" \
+ && echo "${BINUTILS_TAR_SHA256}  binutils.tar.gz" | sha256sum -c - \
+ && rm -rf rgt/binutils && tar -C rgt -xzf binutils.tar.gz && rm binutils.tar.gz \
  && fetch gcc https://github.com/gcc-mirror/gcc.git "${GCC_SHA}" \
  && fetch newlib https://github.com/mirror/newlib-cygwin.git "${NEWLIB_SHA}"
 # GCCPKGVER is what lands in .comment. riscv-gnu-toolchain takes it from

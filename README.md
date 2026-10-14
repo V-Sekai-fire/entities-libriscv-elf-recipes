@@ -31,11 +31,13 @@ Status: the two-directory comparison has not run to completion yet.
 
 ## Sources
 
-The toolchain sources come from these places:
+Everything comes from GitHub:
 
-- riscv-gnu-toolchain, gcc (gcc-mirror), and newlib (mirror/newlib-cygwin):
-  from GitHub.
-- binutils: from sourceware.org. riscv-gnu-toolchain pins binutils as a
-  submodule of sourceware.org, and no GitHub mirror has the 2025.01.20 pin.
-  sourceware.org rate-limits parallel clones (HTTP 429). The Containerfile
-  retries that fetch.
+- riscv-gnu-toolchain.
+- gcc, from gcc-mirror.
+- newlib, from mirror/newlib-cygwin.
+- binutils: a `git archive` of each pinned commit, attached to the `sources`
+  release of this repo. The Containerfile checks the archive against
+  `BINUTILS_TAR_SHA256` in `pins.exs`. riscv-gnu-toolchain pins binutils as a
+  submodule of sourceware.org. sourceware.org rate-limits parallel clones, and
+  no GitHub mirror has the 2025.01.20 commit.
