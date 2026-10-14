@@ -32,8 +32,9 @@ Status:
   on macOS arm64 (podman, arm64 Ubuntu). Both builds give the same bytes,
   82152 bytes, sha256 `e3937162…dcd31967e`. This value is pinned in
   `pins.exs`.
-- `program`: the `/src` build gives 790296 bytes, sha256 `55c25a71…217ca3cf`.
-  The second-directory build has not finished, so this value is not pinned.
+- `program`: built with `--src /src` and with `--src /opt/elsewhere/build-tree`
+  on the same host. Both builds give the same bytes, 790296 bytes, sha256
+  `55c25a71…217ca3cf`. This value is pinned in `pins.exs`.
 
 ## Sources
 

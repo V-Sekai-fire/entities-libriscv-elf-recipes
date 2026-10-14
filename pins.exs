@@ -28,7 +28,7 @@
       BINUTILS_TAR_SHA256: "9c16ff68347f6cf7417310e23094307e04ff601a1fa47bbbcfcdcb38a31c3a22",
       NEWLIB_SHA: "26f7004bf73c421c3fd5e5a6ccf470d05337b435",
       LUAJIT_SHA: "702de32f485aa8d6db2b91eaf1d0ae3ba19e10c6",
-      sha256: nil
+      sha256: "55c25a716977d4bffd9e47c3b63d705f8e5dbca87222bafa34e72de0217ca3cf"
     }
   }
 }
