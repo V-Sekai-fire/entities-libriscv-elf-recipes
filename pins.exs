@@ -15,7 +15,7 @@
       BINUTILS_TAR_SHA256: "df1a146563d29fe6f03173c2b5dc83d1efa4eb3ae1d5e49e8faa3af9474b13ea",
       NEWLIB_SHA: "415fdd4279b85eeec9d54775ce13c5c412451e08",
       LUAJIT_SHA: "",
-      sha256: nil
+      sha256: "e3937162a2d1d6736c67e739aa9486c7e08050504b57feb99cac8b8dcd31967e"
     },
     program: %{
       output: "program.elf",

@@ -26,8 +26,14 @@ Each compile maps the build directory to `/rgt` with `-ffile-prefix-map`.
 does not depend on the build directory or on the depth of the clone. To check
 this, build with two `--src` values and compare the sha256 values.
 
-Status: the two-directory comparison has not run to completion yet.
-`pins.exs` has `sha256: nil` until it does.
+Status:
+
+- `fib`: built with `--src /src` and with `--src /opt/elsewhere/build-tree`
+  on macOS arm64 (podman, arm64 Ubuntu). Both builds give the same bytes,
+  82152 bytes, sha256 `e3937162…dcd31967e`. This value is pinned in
+  `pins.exs`.
+- `program`: the `/src` build gives 790296 bytes, sha256 `55c25a71…217ca3cf`.
+  The second-directory build has not finished, so this value is not pinned.
 
 ## Sources
 
